@@ -762,11 +762,11 @@ while (true)
 
 }
 
-if (a1b1 = a2b2 = a3b3) 
-{
-    Console.WriteLine("Player1 Wins!");
-}
-else
-{
-    Console.WriteLine("Player2 Wins!");
-}
+//if (a1b1 = a2b2 = a3b3) 
+//{
+//    Console.WriteLine("Player1 Wins!");
+//}
+//else
+//{
+//    Console.WriteLine("Player2 Wins!");
+//}
