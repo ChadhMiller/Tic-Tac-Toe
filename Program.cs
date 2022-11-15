@@ -1,772 +1,169 @@
 ﻿// Tic Tac Toe
 
-//test win if statement here
+using System;
+using System.Runtime.CompilerServices;
+using static System.Console;
 
-string a3b3 = "";
-string a1b1 = "";
-string a1b2 = "";
-string a1b3 = "";
-string a2b1 = "";
-string a2b2 = "";
-string a2b3 = "";
-string a3b1 = "";
-string a3b2 = "";
-
-
-Console.WriteLine("Welcome to Tic Tac Toe");
-Console.Write("Player one choose x or o: ");
-string Player1 = Console.ReadLine();
-Console.Write("Player two chose the option player one didn't: ");
-string Player2 = Console.ReadLine();
-
-//Console.WriteLine("   |   |   \n------------\n   |   |   \n------------\n   |   |   ");
-Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-//create a variable x and set it equal to response1
-Console.WriteLine("the columns from left to right are a1, a2, a3 and the rows from top to bottom are b1, b2, b3");
-
-Console.WriteLine($"{Player1} chose your spot ex(a2-b3)");
-string response1 = Console.ReadLine();
-
-while (true)
+namespace Lab09
 {
-    if (response1 == "a1-b1")
+    public class Program
     {
-        a1b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        //I need to make a1b1 the same as Player1
-        break;
-    }
-    else if (response1 == "a2-b1")
-    {
-        a2b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response1 == "a3-b1")
-    {
-        a3b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response1 == "a1-b2")
-    {
-        a1b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response1 == "a2-b2")
-    {
-        a2b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response1 == "a3-b2")
-    {
-        a3b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response1 == "a1-b3")
-    {
-        a1b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response1 == "a2-b3")
-    {
-        a2b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response1 == "a3-b3")
-    {
-        a3b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response1 = Console.ReadLine();
-    }
+        static void Main(string[] args)
+        {
+            const int MAX_TURNS = 9;
 
-}
+            WriteLine("\n----------------------------------");
+            WriteLine("Welcome to tic-tac-toe");
+            WriteLine("----------------------------------");
+            WriteLine("Players will take turns choosing an unoccupied cell.");
+            WriteLine("The first player to get 3 in a row (or column or diagonal) wins!\n");
 
-Console.WriteLine($"{Player2} chose your spot ex(a2-b3)");
-string response2 = Console.ReadLine();
+            char[] board = new char[9] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i' };
+            // will hold the winning player when there is one
+            int winner = 0;
 
-while (true)
-{
-    if (response2 == "a1-b1")
-    {
-        a1b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response2 == "a2-b1")
-    {
-        a2b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response2 == "a3-b1")
-    {
-        a3b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response2 == "a1-b2")
-    {
-        a1b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response2 == "a2-b2")
-    {
-        a2b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response2 == "a3-b2")
-    {
-        a3b2 = "0";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response2 == "a1-b3")
-    {
-        a1b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response2 == "a2-b3")
-    {
-        a2b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response2 == "a3-b3")
-    {
-        a3b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response2 = Console.ReadLine();
-    }
-}
+            for (int turn = 0; turn < MAX_TURNS; turn++)
+            {
+                // player X on even turns, player O on odd turns
+                char currentPlayer = turn % 2 == 0 ? 'X' : 'O';
+                WriteLine($"currentPlayer={currentPlayer}; turn={turn}");
+                WriteLine("Current Board: ");
+                DisplayBoard(board);
+                board = MakeMove(currentPlayer, board);
+                if (HasWinner(board))
+                {
+                    winner = currentPlayer;
+                    break;
+                }
+            }
+            DisplayBoard(board);
 
-Console.WriteLine($"{Player1} chose your spot ex(a2-b3)");
-string response3 = Console.ReadLine();
+            // print the game outcome
+            if (winner == 'X')
+            {
+                WriteLine("\n/----------------\\");
+                WriteLine($"|     X wins!    |");
+                WriteLine("\\----------------/");
+            }
+            else if (winner == 'O')
+            {
+                WriteLine("\n/----------------\\");
+                WriteLine($"|     O wins!    |");
+                WriteLine("\\----------------/");
+            }
+            else
+            {
+                WriteLine("Looks like a draw");
+            }
+        }
 
-while (true)
-{
-    if (response3 == "a1-b1")
-    {
-        a1b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        //I need to make a1b1 the same as Player1
-        break;
-    }
-    else if (response3 == "a2-b1")
-    {
-        a2b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response3 == "a3-b1")
-    {
-        a3b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response3 == "a1-b2")
-    {
-        a1b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response3 == "a2-b2")
-    {
-        a2b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response3 == "a3-b2")
-    {
-        a3b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response3 == "a1-b3")
-    {
-        a1b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response3 == "a2-b3")
-    {
-        a2b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response3 == "a3-b3")
-    {
-        a3b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response3 = Console.ReadLine();
-    }
+        // TODO: write the functions used in main (and any other helper functions you want to use)
 
-}
+        public static void DisplayBoard(char[] board)
+        {
+            //char[] board = new char[9] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i' };
 
-Console.WriteLine($"{Player2} chose your spot ex(a2-b3)");
-string response4 = Console.ReadLine();
+            WriteLine(@" {0} | {1} | {2}", board[0], board[1], board[2]);
+            WriteLine(" ---+---+---");
+            WriteLine(@" {0} | {1} | {2}", board[3], board[4], board[5]);
+            WriteLine(" ---+---+---");
+            WriteLine(@" {0} | {1} | {2}", board[6], board[7], board[8]);
+        }
 
-while (true)
-{
-    if (response4 == "a1-b1")
-    {
-        a1b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response4 == "a2-b1")
-    {
-        a2b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response4 == "a3-b1")
-    {
-        a3b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response4 == "a1-b2")
-    {
-        a1b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response4 == "a2-b2")
-    {
-        a2b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response4 == "a3-b2")
-    {
-        a3b2 = "0";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response4 == "a1-b3")
-    {
-        a1b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response4 == "a2-b3")
-    {
-        a2b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response4 == "a3-b3")
-    {
-        a3b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response4 = Console.ReadLine();
+        /**
+         * displays the tic-tac-toe board
+         * given the contents of the named cells
+         *  a | b | c
+         * ---+---+---
+         *  d | e | f
+         * ---+---+--
+         *  g | h | i
+         */
+
+        public static char GetMove(string prompt)
+        {
+            WriteLine(prompt);
+
+            while (true)
+            {
+                try
+                {
+                    char cell = Convert.ToChar(ReadLine());
+                    if (cell >= 'a' && cell <= 'i')
+                    {
+                        return cell;
+
+                    }
+                }
+                catch
+                {
+                }
+                WriteLine("Not a valid input. Try again.");
+            }
+
+
+        }
+        /* given a string to prompt the user for input, get a cell.
+         * verify the cell is a valid cell defined in the board.  
+         * numbers and words are not valid cells.
+         * return the valid cell.
+        */
+
+
+        public static bool HasWinner(char[] board)
+        {
+            return (CellsAreTheSame(board[0], board[1], board[2])) || 
+            (CellsAreTheSame(board[3], board[4], board[5])) || 
+            (CellsAreTheSame(board[6], board[7], board[8])) || 
+            (CellsAreTheSame(board[0], board[3], board[6])) || 
+            (CellsAreTheSame(board[1], board[4], board[7])) || 
+            (CellsAreTheSame(board[2], board[5], board[8])) || 
+            (CellsAreTheSame(board[6], board[4], board[2])) || 
+            (CellsAreTheSame(board[0], board[4], board[8]));
+        
+        }
+        /**
+         * given the board,
+         * returns true if the board has a winner
+         */
+        
+
+        public static bool CellsAreTheSame(char a, char b, char c)
+        {
+            return a == b && b == c;
+            
+
+        }
+        /**
+         *  returns true if a, b, and c are all the same
+         */
+
+        public static char[] MakeMove(char currentPlayer, char[] board)
+
+        {
+            int choice = 0;
+            do
+            {
+                char cell = GetMove($"{currentPlayer} choose a cell");
+                choice = cell - 'a';
+
+                if (board[choice] == 'X' || board[choice] == 'O')
+                {
+                    WriteLine("Cell is already taken. Choose another cell");
+                }
+                else
+                {
+                    board[choice] = currentPlayer;
+                    break;
+                }
+
+            } while (true);
+            return board;
+
+
+        }
+      
+
+
     }
 }
-
-Console.WriteLine($"{Player1} chose your spot ex(a2-b3)");
-string response5 = Console.ReadLine();
-
-while (true)
-{
-    if (response5 == "a1-b1")
-    {
-        a1b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        //I need to make a1b1 the same as Player1
-        break;
-    }
-    else if (response5 == "a2-b1")
-    {
-        a2b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response5 == "a3-b1")
-    {
-        a3b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response5 == "a1-b2")
-    {
-        a1b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response5 == "a2-b2")
-    {
-        a2b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response5 == "a3-b2")
-    {
-        a3b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response5 == "a1-b3")
-    {
-        a1b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response5 == "a2-b3")
-    {
-        a2b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response5 == "a3-b3")
-    {
-        a3b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response5 = Console.ReadLine();
-    }
-
-}
-
-Console.WriteLine($"{Player2} chose your spot ex(a2-b3)");
-string response6 = Console.ReadLine();
-
-while (true)
-{
-    if (response6 == "a1-b1")
-    {
-        a1b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response6 == "a2-b1")
-    {
-        a2b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response6 == "a3-b1")
-    {
-        a3b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response6 == "a1-b2")
-    {
-        a1b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response6 == "a2-b2")
-    {
-        a2b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response6 == "a3-b2")
-    {
-        a3b2 = "0";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response6 == "a1-b3")
-    {
-        a1b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response6 == "a2-b3")
-    {
-        a2b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response6 == "a3-b3")
-    {
-        a3b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response6 = Console.ReadLine();
-    }
-}
-
-Console.WriteLine($"{Player1} chose your spot ex(a2-b3)");
-string response7 = Console.ReadLine();
-
-while (true)
-{
-    if (response7 == "a1-b1")
-    {
-        a1b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        //I need to make a1b1 the same as Player1
-        break;
-    }
-    else if (response7 == "a2-b1")
-    {
-        a2b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response7 == "a3-b1")
-    {
-        a3b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response7 == "a1-b2")
-    {
-        a1b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response7 == "a2-b2")
-    {
-        a2b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response7 == "a3-b2")
-    {
-        a3b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response7 == "a1-b3")
-    {
-        a1b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response7 == "a2-b3")
-    {
-        a2b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response7 == "a3-b3")
-    {
-        a3b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response7 = Console.ReadLine();
-    }
-
-}
-
-Console.WriteLine($"{Player2} chose your spot ex(a2-b3)");
-string response8 = Console.ReadLine();
-
-while (true)
-{
-    if (response8 == "a1-b1")
-    {
-        a1b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response8 == "a2-b1")
-    {
-        a2b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response8 == "a3-b1")
-    {
-        a3b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response8 == "a1-b2")
-    {
-        a1b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response8 == "a2-b2")
-    {
-        a2b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response8 == "a3-b2")
-    {
-        a3b2 = "0";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response8 == "a1-b3")
-    {
-        a1b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response8 == "a2-b3")
-    {
-        a2b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response8 == "a3-b3")
-    {
-        a3b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response8 = Console.ReadLine();
-    }
-}
-
-Console.WriteLine($"{Player1} chose your spot ex(a2-b3)");
-string response9 = Console.ReadLine();
-
-while (true)
-{
-    if (response9 == "a1-b1")
-    {
-        a1b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        //I need to make a1b1 the same as Player1
-        break;
-    }
-    else if (response9 == "a2-b1")
-    {
-        a2b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response9 == "a3-b1")
-    {
-        a3b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response9 == "a1-b2")
-    {
-        a1b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response9 == "a2-b2")
-    {
-        a2b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response9 == "a3-b2")
-    {
-        a3b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response9 == "a1-b3")
-    {
-        a1b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response9 == "a2-b3")
-    {
-        a2b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response9 == "a3-b3")
-    {
-        a3b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response9 = Console.ReadLine();
-    }
-
-}
-
-Console.WriteLine($"{Player2} chose your spot ex(a2-b3)");
-string response10 = Console.ReadLine();
-
-while (true)
-{
-    if (response10 == "a1-b1")
-    {
-        a1b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response10 == "a2-b1")
-    {
-        a2b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response10 == "a3-b1")
-    {
-        a3b1 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response10 == "a1-b2")
-    {
-        a1b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response10 == "a2-b2")
-    {
-        a2b2 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response10 == "a3-b2")
-    {
-        a3b2 = "0";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response10 == "a1-b3")
-    {
-        a1b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response10 == "a2-b3")
-    {
-        a2b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response10 == "a3-b3")
-    {
-        a3b3 = "o";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response10 = Console.ReadLine();
-    }
-}
-
-Console.WriteLine($"{Player1} chose your spot ex(a2-b3)");
-string response11 = Console.ReadLine();
-
-while (true)
-{
-    if (response11 == "a1-b1")
-    {
-        a1b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        //I need to make a1b1 the same as Player1
-        break;
-    }
-    else if (response11 == "a2-b1")
-    {
-        a2b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response11 == "a3-b1")
-    {
-        a3b1 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response11 == "a1-b2")
-    {
-        a1b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response11 == "a2-b2")
-    {
-        a2b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response11 == "a3-b2")
-    {
-        a3b2 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response11 == "a1-b3")
-    {
-        a1b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response11 == "a2-b3")
-    {
-        a2b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else if (response11 == "a3-b3")
-    {
-        a3b3 = "x";
-        Console.WriteLine($" {a1b1} | {a2b1} | {a3b1} \n------------\n {a1b2} | {a2b2} | {a3b2} \n------------\n {a1b3} | {a2b3} | {a3b3} ");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("invalid response try something like a3-b2");
-        response11 = Console.ReadLine();
-    }
-
-}
-
-//if (a1b1 = a2b2 = a3b3) 
-//{
-//    Console.WriteLine("Player1 Wins!");
-//}
-//else
-//{
-//    Console.WriteLine("Player2 Wins!");
-//}
